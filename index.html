@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUXS Digital</title>
+<meta name="description" content="LUXS Digital — sites, apps, tráfego pago e vídeos para negócios no Brasil e na Europa.">
+<link rel="icon" href="img/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0f22; --bg2:#15172e; --bg3:#1b1d38; --txt:#f5f5fa; --muted:#9a9cba; --line:#262947;
+    --pink:#ec2a6d; --orange:#f7a133; --grad:linear-gradient(90deg,var(--pink),var(--orange));
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  h1,h2,h3,.logo{font-family:"Exo 2",sans-serif;line-height:1.1;letter-spacing:-.01em}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kicker{display:flex;align-items:center;gap:10px;color:var(--orange);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+  .kicker::before{content:"";width:28px;height:1px;background:var(--orange)}
+  .center .kicker{justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:12px;font-weight:600;transition:transform .2s,box-shadow .2s;border:0;cursor:pointer;font:inherit;font-weight:600}
+  .btn-main{background:var(--grad);color:#fff}
+  .btn-main:hover{box-shadow:0 12px 30px #ec2a6d40}
+  .btn-ghost{border:1px solid var(--line);color:var(--txt);background:transparent}
+  .btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+  section{padding:110px 0;position:relative}
+  .title{margin-bottom:56px}
+  .title h2{font-size:clamp(2rem,4.5vw,3.2rem)}
+  .title p{color:var(--muted);max-width:560px;margin-top:14px}
+  .center{text-align:center}.center p{margin-inline:auto}
+
+  /* topo */
+  header{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  header.solid{background:#0e0f22e0;backdrop-filter:blur(12px);border-color:var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:10px;font-size:1.25rem;font-weight:800;letter-spacing:.08em}
+  .logo img{width:34px}
+  nav{display:flex;gap:30px}
+  nav a{color:var(--muted);font-size:.93rem;transition:color .2s}
+  nav a:hover{color:var(--txt)}
+  @media(max-width:860px){nav{display:none}}
+
+  /* hero */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 80px;overflow:hidden}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(#ffffff0a 1px,transparent 1px),linear-gradient(90deg,#ffffff0a 1px,transparent 1px);background-size:64px 64px;animation:grade 7s linear infinite;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 75%);pointer-events:none}
+  @keyframes grade{to{background-position:64px 64px}}
+  #rede{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .hero .wrap{position:relative;z-index:1;width:100%}
+  .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);max-width:950px;margin-bottom:40px}
+  .rot{display:inline-block}
+  .rot::after{content:"";display:inline-block;width:4px;height:.85em;margin-left:6px;vertical-align:-.06em;background:var(--orange);animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero .sub{color:var(--muted);font-size:1.15rem;max-width:560px;margin:-16px 0 36px}
+
+  /* formulário */
+  .lead{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+  .lead h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:18px}
+  .lead p{color:var(--muted);margin-bottom:14px}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:32px}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .fgrid .full{grid-column:1/-1}
+  label.f{display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px}
+  .f input,.f select,.f textarea{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font:inherit;font-size:.95rem;transition:border-color .2s}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--pink)}
+  .form .btn:disabled{opacity:.75;cursor:wait}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips input{display:none}
+  .chips span{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-size:.9rem;color:var(--muted);transition:.2s;user-select:none}
+  .chips span:hover{border-color:var(--muted);color:var(--txt)}
+  .chips input:checked+span{background:var(--grad);color:#fff;border-color:transparent}
+  .rgpd{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:.85rem;margin-top:16px}
+  .rgpd input{margin-top:4px}
+  .form .btn{width:100%;justify-content:center;margin-top:8px}
+  .note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:12px}
+  @media(max-width:860px){.lead{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}}
+
+  /* soluções (bento) */
+  .bento{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .sol{position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--line);border-radius:24px;padding:34px;min-height:380px;display:flex;flex-direction:column;--x:50%;--y:50%}
+  .sol::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:radial-gradient(300px circle at var(--x) var(--y),var(--orange),transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s;pointer-events:none}
+  .sol:hover::after{opacity:1}
+  .sol small{color:var(--orange);font-weight:600;letter-spacing:.16em;font-size:.74rem}
+  .sol h3{font-size:1.9rem;margin:8px 0 6px}
+  .sol .more{color:var(--muted);font-size:.9rem;margin-top:auto;display:inline-flex;gap:8px;align-items:center}
+  .sol .more:hover{color:var(--txt)}
+  .sol.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:0}
+  .sol.wide .demo{margin:0}
+  .subs{list-style:none;display:grid;gap:12px;margin:22px 0 26px}
+  .subs li{padding-left:18px;position:relative}
+  .subs li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--grad);transform:rotate(45deg)}
+  .subs b{display:block;font-weight:600}
+  .subs span{color:var(--muted);font-size:.9rem}
+  @media(max-width:860px){.sol.wide{grid-template-columns:1fr}}
+  .demo{margin:26px 0;flex:1;display:flex;align-items:center;justify-content:center}
+  @media(max-width:860px){.bento{grid-template-columns:1fr}}
+
+  /* demo: notebook + telemóvel (dev) */
+  .devices{position:relative;width:100%;max-width:520px;padding-bottom:10px}
+  .laptop .screen{border:10px solid #2a2d4d;border-bottom-width:14px;border-radius:14px 14px 0 0;background:var(--bg);aspect-ratio:16/10;overflow:hidden;display:flex;flex-direction:column}
+  .laptop .base{height:12px;margin:0 -7%;background:linear-gradient(#34375a,#1f2140);border-radius:0 0 12px 12px;position:relative}
+  .laptop .base::before{content:"";position:absolute;left:50%;top:0;width:18%;height:5px;margin-left:-9%;background:#15172e;border-radius:0 0 6px 6px}
+  .site-nav{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line)}
+  .site-nav i{width:34px;height:7px;border-radius:4px;background:var(--grad)}
+  .site-nav span{display:flex;gap:5px}.site-nav span b{width:16px;height:5px;border-radius:3px;background:var(--bg3)}
+  .site-body{padding:12px;display:grid;gap:8px;flex:1}
+  .sk{height:8px;border-radius:5px;background:var(--bg3);transform-origin:left;animation:build 5s ease-in-out infinite}
+  .sk.h{height:16px;width:60%;background:#ffffff22}
+  .sk.m{width:85%;animation-delay:.25s}.sk.s{width:55%;animation-delay:.4s}
+  .sk.cta{width:28%;height:14px;background:var(--grad);animation-delay:.55s}
+  .sk.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;height:42px;background:none;animation-delay:.7s}
+  .sk.cards b{background:var(--bg3);border-radius:6px}
+  @keyframes build{0%{transform:scaleX(0);opacity:0}20%,85%{transform:scaleX(1);opacity:1}100%{opacity:0}}
+  /* mini réplica do próprio site no ecrã do notebook */
+  .laptop .screen{position:relative}
+  .mini{position:absolute;inset:0;background:#0e0f22;overflow:hidden;font-family:Inter,sans-serif;color:#f5f5fa}
+  .mini-grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px);background-size:22px 22px;animation:minigrade 4s linear infinite}
+  @keyframes minigrade{to{background-position:22px 22px}}
+  .mini-nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-family:"Exo 2";font-weight:800;font-size:10px;letter-spacing:.06em}
+  .mini-nav span{display:flex;align-items:center;gap:4px}
+  .mini-nav img{width:15px}
+  .mini-nav em{font-style:normal}
+  .mini-links{gap:6px!important}.mini-links b{width:20px;height:4px;border-radius:2px;background:#ffffff33}
+  .mini-nav i,.mini-btn{font-style:normal;font-family:Inter;font-weight:600;font-size:8px;letter-spacing:0;background:var(--grad);color:#fff;padding:6px 10px;border-radius:5px}
+  .mini-hero{position:relative;padding:26px 18px 0}
+  .mini-h1{font-family:"Exo 2";font-weight:700;font-size:23px;line-height:1.1}
+  .mini-rot{display:inline-grid}
+  .mini-rot span{grid-area:1/1;opacity:0;animation:minirot 7.5s infinite}
+  .mini-rot span:nth-child(2){animation-delay:2.5s}.mini-rot span:nth-child(3){animation-delay:5s}
+  @keyframes minirot{0%{opacity:0;transform:translateY(4px)}5%,28%{opacity:1;transform:none}31%,100%{opacity:0}}
+  .mini-sub{font-size:9px;color:#9a9cba;max-width:230px;margin:12px 0 14px;line-height:1.4}
+  .mini-btn{display:inline-block}
+  .mini-cursor{position:absolute;width:12px;height:16px;background:#fff;clip-path:polygon(0 0,0 100%,30% 75%,55% 100%,70% 92%,45% 68%,100% 68%);filter:drop-shadow(0 1px 1px #0008);animation:minicur 7.5s ease-in-out infinite}
+  @keyframes minicur{0%{left:75%;top:80%}35%{left:30%;top:78%}45%{left:30%;top:78%;transform:scale(.8)}50%{transform:none}75%{left:88%;top:8%}100%{left:75%;top:80%}}
+  .mobile{position:absolute;right:-10px;bottom:0;width:110px;aspect-ratio:9/18.5;border:5px solid #2a2d4d;border-radius:18px;background:#0e0f22;overflow:hidden;box-shadow:-12px 12px 30px #0008;animation:bob 5s ease-in-out infinite}
+  .mobile::before{content:"";position:absolute;z-index:2;top:4px;left:50%;width:26px;height:5px;margin-left:-13px;border-radius:3px;background:#2a2d4d}
+  .mob-scroll{padding:30px 8px 8px;display:grid;gap:8px;animation:mobscroll 8s ease-in-out infinite}
+  @keyframes mobscroll{0%,30%{transform:none}50%,75%{transform:translateY(-22px)}100%{transform:none}}
+  .mob-nav{display:flex;align-items:center;gap:4px;font-family:"Exo 2";font-weight:800;font-size:7px;letter-spacing:.06em}
+  .mob-nav img{width:10px}.mob-nav i{margin-left:auto;width:10px;height:6px;border-top:1.5px solid #fff;border-bottom:1.5px solid #fff}
+  .mob-h{font-family:"Exo 2";font-weight:700;font-size:11px;line-height:1.15}
+  .mob-h em{font-style:normal}
+  .mob-btn{font-size:6.5px;font-weight:600;text-align:center;padding:5px;border-radius:5px;background:var(--grad);animation:tapbtn 8s infinite}
+  @keyframes tapbtn{0%,14%{transform:none}17%{transform:scale(.92)}20%,100%{transform:none}}
+  .mob-card{border:1px solid var(--line);border-radius:7px;padding:6px;display:grid;gap:4px;background:#15172e}
+  .mob-card b{width:16px;height:16px;border-radius:5px;background:var(--grad)}
+  .mob-card span{height:4px;border-radius:2px;background:var(--bg3)}.mob-card span+span{width:60%}
+  .tap{position:absolute;left:50%;top:44%;width:16px;height:16px;margin:-8px;border-radius:50%;background:#ffffff66;opacity:0;animation:tap 8s infinite}
+  @keyframes tap{0%,12%{opacity:0;transform:scale(.4)}16%{opacity:1;transform:scale(1)}22%,100%{opacity:0;transform:scale(1.6)}}
+  @keyframes pop{0%,10%{transform:scale(0)}25%,85%{transform:scale(1)}100%{transform:scale(0)}}
+  @keyframes bob{50%{transform:translateY(-8px)}}
+
+  /* demo: telemóvel a receber mensagens (tráfego) */
+  .phone{position:relative;width:230px;height:400px;border-radius:38px;border:8px solid #2a2d4d;background:linear-gradient(160deg,#2a1240,#11122a 55%,#3a1a20);overflow:hidden;box-shadow:0 20px 50px #0008}
+  .island{position:absolute;top:8px;left:50%;width:70px;height:20px;margin-left:-35px;border-radius:12px;background:#000}
+  .lock{text-align:center;padding-top:46px;color:#fff}
+  .hora{font-family:"Exo 2";font-size:3rem;font-weight:700;line-height:1}
+  .data{font-size:.72rem;opacity:.8;margin-top:4px}
+  .pilha{position:absolute;left:8px;right:8px;top:150px;display:flex;flex-direction:column;gap:7px}
+  .notif{display:flex;gap:9px;padding:9px 10px;border-radius:16px;background:#ffffff1f;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;opacity:0;transform:translateY(-16px) scale(.95);animation:chega 8s ease-out infinite}
+  .notif:nth-child(2){animation-delay:1s}.notif:nth-child(3){animation-delay:2s}.notif:nth-child(4){animation-delay:3s}
+  .notif .ic{flex:none;width:28px;height:28px;border-radius:7px;background:#25d366;display:grid;place-items:center}
+  .notif .ic svg{width:17px;height:17px;fill:#fff}
+  .notif > div:last-child{min-width:0;flex:1}
+  .nt{display:flex;justify-content:space-between;font-size:.62rem;opacity:.7;text-transform:uppercase;letter-spacing:.04em}
+  .nt b{font-weight:600}.nt em{font-style:normal;text-transform:none}
+  .notif strong{display:block;font-size:.78rem}
+  .notif span{display:block;font-size:.74rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @keyframes chega{0%{opacity:0;transform:translateY(-16px) scale(.95)}6%,80%{opacity:1;transform:none}90%,100%{opacity:0;transform:none}}
+
+  /* demo: pesquisa no Google */
+  .gdemo{width:100%;max-width:360px}
+  .gbar{display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:999px;background:#fff;color:#202124;font-size:.88rem;box-shadow:0 4px 18px #0005}
+  .gbar svg{width:16px;height:16px;flex:none;stroke:#5f6368;fill:none;stroke-width:2.4}
+  .gbar .typed{min-height:1.2em}
+  .gbar .typed::after{content:"";display:inline-block;width:1.5px;height:1em;margin-left:1px;vertical-align:-.15em;background:#202124;animation:blink 1s steps(1) infinite}
+  .gres{margin-top:12px;border-radius:14px;background:var(--bg);border:1px solid var(--line);overflow:hidden;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+  .gdemo.show .gres{opacity:1;transform:none}
+  .gmap{position:relative;height:96px;background:linear-gradient(#ffffff08 1px,transparent 1px) 0 0/20px 20px,linear-gradient(90deg,#ffffff08 1px,transparent 1px) 0 0/20px 20px,#13152b}
+  .gmap::before{content:"";position:absolute;left:-10%;right:-10%;top:55%;height:8px;background:#ffffff10;transform:rotate(-8deg)}
+  .gpin{position:absolute;left:50%;top:50%;width:26px;transform:translate(-50%,-100%) translateY(-60px);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.5,1) .3s,opacity .3s .3s}
+  .gdemo.show .gpin{transform:translate(-50%,-100%);opacity:1}
+  .gring{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid var(--orange);opacity:0}
+  .gdemo.show .gring{animation:ring 2s ease-out .8s infinite}
+  .ginfo{padding:12px 14px}
+  .ginfo b{display:block;font-size:.95rem}
+  .ginfo .st{color:var(--orange);font-size:.8rem;letter-spacing:1px}
+  .ginfo .st span{color:var(--muted);letter-spacing:0;margin-left:6px}
+  .ginfo .ok{color:#3ecf8e;font-size:.78rem}
+  .gbtns{display:flex;gap:6px;margin-top:10px}
+  .gbtns i{font-style:normal;font-size:.72rem;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--txt)}
+  .gbtns i:first-child{background:var(--grad);border-color:transparent}
+  @keyframes ring{0%{transform:scale(0);opacity:1}100%{transform:scale(6);opacity:0}}
+
+  /* demo: editor de vídeo (audiovisual) */
+  .editor{width:100%;max-width:440px;border:1px solid var(--line);border-radius:14px;background:var(--bg);overflow:hidden}
+  .preview{position:relative;aspect-ratio:16/8;background:linear-gradient(135deg,#ec2a6d2e,#f7a13322),#13152b;display:grid;place-items:center;overflow:hidden}
+  .preview .rec{position:absolute;left:12px;top:10px;font-size:.7rem;color:#fff;display:flex;gap:6px;align-items:center}
+  .preview .rec::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff3b5c;animation:blink 1s steps(1) infinite}
+  .preview .tc{position:absolute;right:12px;top:10px;font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .preview .ttl{position:absolute;left:12px;bottom:10px;font-family:"Exo 2";font-weight:700;font-size:.95rem;animation:ttl 6s ease-in-out infinite}
+  @keyframes ttl{0%,15%{opacity:0;transform:translateY(8px)}25%,80%{opacity:1;transform:none}100%{opacity:0}}
+  /* vídeo a passar na prévia: 6 takes em loop de 12s */
+  .take{position:absolute;inset:0;overflow:hidden;opacity:0;animation:take 12s linear infinite}
+  .t2{animation-delay:2s}.t3{animation-delay:4s}.t4{animation-delay:6s}.t5{animation-delay:8s}.t6{animation-delay:10s}
+  @keyframes take{0%{opacity:0}1%,16%{opacity:1}17%,100%{opacity:0}}
+  .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;animation:flash 2s linear infinite}
+  @keyframes flash{0%{opacity:.55}6%{opacity:0}100%{opacity:0}}
+  .barras{position:absolute;inset:0;pointer-events:none;border-top:7px solid #000;border-bottom:7px solid #000}
+  .cap{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);white-space:nowrap;font-size:.76rem;font-weight:600;color:#fff;background:#000a;padding:3px 10px;border-radius:6px}
+  /* 1: texto cinético */
+  .t1{background:#0e0f22;display:grid;place-content:center;text-align:center}
+  .k1{font-family:"Exo 2";font-weight:800;font-size:2.6rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;animation:k1 12s cubic-bezier(.2,1.4,.4,1) infinite}
+  .k2{font-family:"Exo 2";font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:.75rem;animation:k2 12s ease-out infinite}
+  @keyframes k1{0%{transform:scale(2.4);opacity:0}3%{transform:scale(1);opacity:1}16%{transform:scale(1.12)}}
+  @keyframes k2{0%,4%{opacity:0;letter-spacing:1em}8%,16%{opacity:1;letter-spacing:.3em}}
+  /* 2: câmara a focar a loja */
+  .t2{background:radial-gradient(circle at 50% 45%,#262947,#0e0f22 75%)}
+  .loja{position:absolute;left:50%;top:44%;width:110px;transform:translate(-50%,-50%);animation:focar 12s ease-out infinite;animation-delay:2s}
+  @keyframes focar{0%{filter:blur(6px);transform:translate(-50%,-50%) scale(1.25)}8%,16%{filter:blur(0);transform:translate(-50%,-50%) scale(1)}}
+  .fc{position:absolute;width:16px;height:16px;border:2px solid #fff;opacity:.85;animation:mira 12s ease-out infinite;animation-delay:2s}
+  .tl{left:26%;top:16%;border-right:0;border-bottom:0}.tr{right:26%;top:16%;border-left:0;border-bottom:0}
+  .bl{left:26%;bottom:26%;border-right:0;border-top:0}.br{right:26%;bottom:26%;border-left:0;border-top:0}
+  @keyframes mira{0%{transform:scale(1.6);opacity:0}6%,16%{transform:none;opacity:.85}}
+  .foco{position:absolute;left:50%;top:44%;width:8px;height:8px;margin:-4px;border-radius:50%;border:2px solid #3ecf8e;opacity:0;animation:ok 12s infinite;animation-delay:2s}
+  @keyframes ok{0%,7%{opacity:0}8%,16%{opacity:1}}
+  .hud{position:absolute;left:50%;top:14px;transform:translateX(-50%);font-size:.62rem;letter-spacing:.08em;color:#fffc;font-variant-numeric:tabular-nums}
+  /* 3: produto com feixe de luz */
+  .t3{background:radial-gradient(circle at 70% 40%,#2c2f5a,#13152b)}
+  .prod{position:absolute;left:50%;top:44%;display:flex;gap:10px;transform:translate(-50%,-50%);animation:zoomin 12s ease-out infinite;animation-delay:4s}
+  .prod i{width:46px;height:62px;border-radius:10px;background:var(--grad);box-shadow:0 10px 24px #0007}
+  .prod i:nth-child(2){height:76px;background:#f5f5fa}
+  @keyframes zoomin{0%{transform:translate(-50%,-50%) scale(.6) rotate(-8deg)}16%{transform:translate(-50%,-50%) scale(1.08) rotate(0)}}
+  .luz{position:absolute;top:-20%;bottom:-20%;width:40px;background:linear-gradient(90deg,transparent,#ffffff40,transparent);transform:rotate(18deg);animation:luz 12s ease-in-out infinite;animation-delay:4s}
+  @keyframes luz{0%{left:-20%}12%,100%{left:120%}}
+  .tag-n{position:absolute;right:14%;top:18%;font-family:"Exo 2";font-weight:800;font-size:.8rem;padding:3px 9px;border-radius:6px;background:var(--orange);color:#11122a;transform:rotate(8deg);animation:carimbo 12s cubic-bezier(.2,1.6,.4,1) infinite;animation-delay:4s}
+  @keyframes carimbo{0%,5%{transform:scale(0) rotate(8deg)}8%,100%{transform:scale(1) rotate(8deg)}}
+  /* 4: reel com gostos */
+  .t4{background:#15172e;display:flex;align-items:center;justify-content:center;gap:22px}
+  .reel{position:relative;width:74px;height:120px;border-radius:12px;overflow:hidden;border:3px solid #2a2d4d;animation:reel 12s ease-out infinite;animation-delay:6s}
+  @keyframes reel{0%{transform:translateY(40px) rotate(-6deg);opacity:0}3%,100%{transform:rotate(-3deg);opacity:1}}
+  .reel-img{position:absolute;inset:0;background:linear-gradient(160deg,#f7a133,#ec2a6d 60%,#3a1640)}
+  .reel-ui{position:absolute;left:6px;bottom:8px;display:grid;gap:3px}.reel-ui b{width:40px;height:4px;border-radius:2px;background:#fff9}.reel-ui b+b{width:26px}
+  .h{position:absolute;right:8px;bottom:10px;color:#ff3b5c;font-size:.8rem;opacity:0;animation:h 12s ease-out infinite}
+  .h:nth-of-type(1){animation-delay:6.3s}.h:nth-of-type(2){animation-delay:6.6s;right:16px}.h:nth-of-type(3){animation-delay:6.9s}.h:nth-of-type(4){animation-delay:7.2s;right:14px}
+  @keyframes h{0%{opacity:0;transform:none}2%{opacity:1}7%{opacity:0;transform:translateY(-70px) scale(1.6)}100%{opacity:0}}
+  .lado{font-family:"Exo 2"}.lk{font-weight:800;font-size:1.5rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.lt{color:var(--muted);font-size:.75rem}
+  /* 5: gráfico a subir */
+  .t5{background:#0e0f22}
+  .graf{position:absolute;left:8%;right:8%;top:16%;width:84%;height:56%}
+  .graf path{stroke-dasharray:300;stroke-dashoffset:300;animation:traco 12s ease-out infinite;animation-delay:8s}
+  @keyframes traco{0%{stroke-dashoffset:300}12%,100%{stroke-dashoffset:0}}
+  /* 6: assinatura */
+  .t6{background:#0e0f22;display:grid;place-content:center;justify-items:center;gap:6px}
+  .t6 img{width:52px;animation:logo 12s cubic-bezier(.2,1.5,.4,1) infinite;animation-delay:10s}
+  @keyframes logo{0%{transform:scale(.3) rotate(-30deg);opacity:0}4%,100%{transform:none;opacity:1}}
+  .fim{font-family:"Exo 2";font-weight:800;letter-spacing:.12em;font-size:.95rem;animation:fim 12s ease-out infinite;animation-delay:10s}
+  .cap2{font-size:.72rem;color:var(--muted);animation:fim 12s ease-out infinite;animation-delay:10.4s}
+  @keyframes fim{0%,2%{opacity:0;transform:translateY(8px)}6%,100%{opacity:1;transform:none}}
+  .preview .rec,.preview .tc{z-index:2;top:14px}
+  .play{width:50px;height:50px;border-radius:50%;background:var(--grad);display:grid;place-items:center;animation:pulse 2s ease-in-out infinite}
+  .play svg{width:18px;height:18px;fill:#fff;margin-left:3px}
+  .tracks{position:relative;padding:10px 12px;display:grid;gap:6px}
+  .trk{display:flex;gap:4px;height:16px}
+  .trk b{border-radius:4px;background:var(--bg3)}
+  .trk.v b{background:linear-gradient(90deg,#ec2a6d88,#f7a13388)}
+  .trk.a b{background:#3ecf8e44}
+  .trk.t b{background:#ffffff22}
+  .head{position:absolute;top:4px;bottom:4px;left:12px;width:2px;background:#fff;animation:head 6s linear infinite}
+  .head::before{content:"";position:absolute;top:-4px;left:-4px;width:10px;height:8px;background:#fff;clip-path:polygon(0 0,100% 0,50% 100%)}
+  @keyframes head{from{left:12px}to{left:calc(100% - 14px)}}
+  .head{animation-duration:12s!important}
+  @keyframes pulse{50%{transform:scale(1.08)}}
+  .sol.wide.flip > .demo{order:-1}
+
+  /* faixa */
+  .marquee{overflow:hidden;border-block:1px solid var(--line);padding:26px 0;background:var(--bg2)}
+  .marquee .track{display:flex;width:max-content;animation:mq 34s linear infinite}
+  .marquee:hover .track{animation-play-state:paused}
+  .marquee span{display:inline-flex;align-items:baseline;gap:12px;margin-right:56px;white-space:nowrap}
+  .marquee b{font-family:"Exo 2";font-size:1.5rem}
+  .marquee em{font-style:normal;color:var(--muted);font-size:.9rem}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* números */
+  .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .num{text-align:center;padding:40px 20px;border:1px solid var(--line);border-radius:22px;background:var(--bg2)}
+  .num b{display:block;font-family:"Exo 2";font-size:clamp(3rem,6vw,4.4rem);line-height:1}
+  .num span{color:var(--muted)}
+  @media(max-width:760px){.nums{grid-template-columns:1fr}}
+
+  /* fases */
+  .fases{position:relative;max-width:760px;margin:0 auto}
+  .fases .line{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--line)}
+  .fases .fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(var(--pink),var(--orange))}
+  .fase{position:relative;margin-bottom:70px}
+  .fase .dot{position:relative;z-index:1;width:40px;height:40px;margin:0 auto 22px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:grid;place-items:center;font-family:"Exo 2";font-weight:700;color:var(--muted);transition:.4s}
+  .fase.on .dot{background:var(--grad);border-color:transparent;color:#fff}
+  .fase .card{position:relative;z-index:1}
+  .fase h3{font-size:1.4rem;margin-bottom:16px}
+  .fase ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+  .fase li{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:.93rem}
+  .fase li::before{content:"✓";flex:none;width:20px;height:20px;border-radius:50%;background:#ec2a6d22;color:var(--orange);font-size:.7rem;display:grid;place-items:center}
+  .out{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);font-size:.92rem;color:var(--muted)}
+  .out small{display:block;color:var(--orange);letter-spacing:.14em;font-size:.68rem;margin-bottom:4px}
+  .out b{color:var(--txt);font-weight:500}
+
+  /* objeções */
+  .objs{display:grid;gap:16px;max-width:860px;margin:0 auto}
+  .obj{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:30px;border:1px solid var(--line);border-radius:20px;background:var(--bg2)}
+  .obj small{color:var(--orange);letter-spacing:.16em;font-size:.72rem;font-weight:600}
+  .obj h3{font-size:1.15rem;margin-top:6px}
+  .obj p{color:var(--muted)}
+  @media(max-width:760px){.obj{grid-template-columns:1fr;gap:10px}}
+
+  /* porquê */
+  .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .why .card{padding:28px}
+  .why h3{font-size:1.15rem;margin-bottom:8px;display:flex;gap:12px;align-items:center}
+  .why h3 i{font-style:normal;width:30px;height:30px;flex:none;border-radius:8px;background:var(--grad);display:grid;place-items:center;font-size:.8rem;color:#fff}
+  .why p{color:var(--muted);font-size:.95rem}
+
+  /* cta final */
+  .final{text-align:center;overflow:hidden}
+  .final .x{width:120px;margin:0 auto 30px;animation:float 6s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
+  .final h2{font-size:clamp(2.4rem,6vw,4.4rem);margin-bottom:36px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  footer nav{display:flex;gap:22px}
+
+  .whats{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px #0006;z-index:20}
+  .whats svg{width:30px;height:30px;fill:#fff}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.on{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="topo">
+  <div class="wrap">
+    <a href="#" class="logo"><img src="img/icone.png" alt="">LUXS <span class="grad">DIGITAL</span></a>
+    <nav>
+      <a href="#solucoes">Soluções</a>
+      <a href="#metodo">Método</a>
+      <a href="#resultados">Onde atuamos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a href="#contato" class="btn btn-main" style="padding:11px 20px">Falar com a LUXS</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <canvas id="rede"></canvas>
+  <div class="wrap">
+    <h1>O seu negócio merece mais do que<br><span class="grad rot"></span></h1>
+    <p class="sub">Criamos o seu site, colocamos o seu negócio no Google, trazemos clientes com anúncios e produzimos os seus vídeos. Uma só equipa, do Brasil à Europa.</p>
+    <a href="#contato" class="btn btn-main">Falar com a nossa equipa <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section id="contato">
+  <div class="wrap lead">
+    <div class="reveal">
+      <div class="kicker">Próximo passo</div>
+      <h2>Está a um clique de pôr o seu negócio <span class="grad">a crescer</span>.</h2>
+      <p>Escolha o que precisa, envie, e a partir daí é connosco.</p>
+    </div>
+    <form id="form" class="card form reveal">
+      <div class="fgrid">
+        <div class="f"><label class="f">Nome</label><input name="nome" required placeholder="O seu nome"></div>
+        <div class="f"><label class="f">Empresa</label><input name="empresa" placeholder="Nome da empresa"></div>
+        <div class="f full"><label class="f">De onde fala?</label>
+          <div class="chips">
+            <label><input type="radio" name="pais" value="Portugal" checked><span>🇵🇹 Portugal</span></label>
+            <label><input type="radio" name="pais" value="Brasil"><span>🇧🇷 Brasil</span></label>
+            <label><input type="radio" name="pais" value="Espanha"><span>🇪🇸 Espanha</span></label>
+            <label><input type="radio" name="pais" value="França"><span>🇫🇷 França</span></label>
+            <label><input type="radio" name="pais" value="Outro"><span>🌍 Outro</span></label>
+          </div>
+        </div>
+        <div class="f full"><label class="f">O que procura? Pode escolher mais de um.</label>
+          <div class="chips">
+            <label><input type="checkbox" value="Site"><span>Site</span></label>
+            <label><input type="checkbox" value="Ferramenta web"><span>Ferramenta web</span></label>
+            <label><input type="checkbox" value="App"><span>App</span></label>
+            <label><input type="checkbox" value="Tráfego pago"><span>Tráfego pago</span></label>
+            <label><input type="checkbox" value="Aparecer no Google"><span>Aparecer no Google</span></label>
+            <label><input type="checkbox" value="Vídeos"><span>Vídeos</span></label>
+          </div>
+        </div>
+        <div class="f full"><label class="f">Quer acrescentar alguma coisa? (opcional)</label><textarea name="msg" rows="3" placeholder="Ex.: tenho uma padaria em Lisboa e quero mais encomendas"></textarea></div>
+      </div>
+      <label class="rgpd"><input type="checkbox" required><span>Aceito que a LUXS responda à minha mensagem.</span></label>
+      <button class="btn btn-main" type="submit"><svg viewBox="0 0 24 24" style="fill:#fff;stroke:none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>Enviar pelo WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<!-- SOLUÇÕES -->
+<section id="solucoes">
+  <div class="wrap">
+    <div class="title reveal"><div class="kicker">As nossas soluções</div><h2>Tudo o que o seu negócio precisa.</h2></div>
+    <div class="bento">
+      <div class="sol reveal">
+        <small>AQUISIÇÃO · TRÁFEGO PAGO</small>
+        <h3>Clientes novos<br>todos os dias.</h3>
+        <div class="demo"><div class="phone">
+          <div class="island"></div>
+          <div class="lock"><div class="hora">9:41</div><div class="data">segunda-feira, 3 de novembro</div></div>
+          <div class="pilha">
+            <div class="notif"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></div><div><div class="nt"><b>WhatsApp</b><em>agora</em></div><strong>Ana Costa</strong><span>Olá! Vi o vosso anúncio, fazem orçamento?</span></div></div>
+            <div class="notif"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></div><div><div class="nt"><b>WhatsApp</b><em>agora</em></div><strong>Miguel Santos</strong><span>Quero marcar para sábado 🙌</span></div></div>
+            <div class="notif"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></div><div><div class="nt"><b>WhatsApp</b><em>agora</em></div><strong>Joana Ribeiro</strong><span>Ainda têm disponibilidade esta semana?</span></div></div>
+          </div>
+        </div></div>
+        <ul class="subs">
+          <li><b>Anúncios no Instagram, Facebook e Google</b><span>Mostramos o seu negócio a quem tem mais hipóteses de comprar, na sua cidade ou no país inteiro.</span></li>
+          <li><b>Gestão e otimização</b><span>Acompanhamos os números e colocamos o dinheiro onde dá retorno. Sem gastar à toa.</span></li>
+        </ul>
+        <a href="#contato" class="more">Quero mais clientes →</a>
+      </div>
+      <div class="sol reveal">
+        <small>AQUISIÇÃO · GOOGLE MEU NEGÓCIO</small>
+        <h3>Apareça no Google<br>quando procuram por si.</h3>
+        <div class="demo"><div class="gdemo" id="gdemo">
+          <div class="gbar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="typed" id="gtyped"></span></div>
+          <div class="gres">
+            <div class="gmap"><span class="gring"></span><svg class="gpin" viewBox="0 0 24 24"><defs><linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#ec2a6d"/><stop offset="1" stop-color="#f7a133"/></linearGradient></defs><path fill="url(#pg)" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></div>
+            <div class="ginfo"><b>O Seu Negócio</b><div class="st">★★★★★<span>4,9 (128 avaliações)</span></div><div class="ok">Aberto · a 600 m</div><div class="gbtns"><i>Ligar</i><i>Direções</i><i>Site</i></div></div>
+          </div>
+        </div></div>
+        <ul class="subs">
+          <li><b>No topo das pesquisas e no Google Maps</b><span>Quando alguém pesquisa no Google pelo que você vende, como "restaurante perto de mim" ou "eletricista em Lisboa", o seu negócio aparece.</span></li>
+          <li><b>Perfil completo e confiável</b><span>Morada, horário, fotos, avaliações e botões para ligar, ver o caminho ou visitar o site. Tudo num clique.</span></li>
+        </ul>
+        <a href="#contato" class="more">Quero aparecer no Google →</a>
+      </div>
+      <div class="sol wide flip reveal">
+        <div>
+          <small>CONTEÚDO AUDIOVISUAL</small>
+          <h3>Vídeos que fazem parar<br>o scroll e vender.</h3>
+          <ul class="subs">
+            <li><b>Produção e edição de vídeos profissionais</b><span>Vídeos com a qualidade e a identidade da sua marca, para redes sociais, anúncios e site.</span></li>
+          </ul>
+          <a href="#contato" class="more">Quero os meus vídeos →</a>
+        </div>
+        <div class="demo"><div class="editor">
+          <div class="preview">
+            <div class="take t1"><div class="k1">PARE.</div><div class="k2">o scroll</div></div>
+            <div class="take t2"><svg class="loja" viewBox="0 0 120 90"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#ec2a6d"/><stop offset="1" stop-color="#f7a133"/></linearGradient></defs><path d="M10 30 L20 8 H100 L110 30 Z" fill="url(#lg)"/><path d="M10 30 q8 10 16 0 q8 10 16 0 q8 10 17 0 q8 10 17 0 q8 10 17 0 q8 10 17 0" fill="#f5f5fa"/><rect x="16" y="36" width="88" height="50" rx="3" fill="#2a2d4d"/><rect x="24" y="46" width="34" height="40" rx="2" fill="#13152b"/><rect x="66" y="46" width="30" height="22" rx="2" fill="#f7a13355"/></svg><span class="fc tl"></span><span class="fc tr"></span><span class="fc bl"></span><span class="fc br"></span><span class="hud">4K · 24fps · ISO 400</span><span class="foco"></span><div class="cap">Cada negócio tem uma história.</div></div>
+            <div class="take t3"><div class="luz"></div><div class="prod"><i></i><i></i><i></i></div><div class="tag-n">NOVO</div><div class="cap">Mostre o que faz de melhor.</div></div>
+            <div class="take t4"><div class="reel"><div class="reel-img"></div><div class="reel-ui"><b></b><b></b></div><span class="h">❤</span><span class="h">❤</span><span class="h">❤</span><span class="h">❤</span></div><div class="lado"><div class="lk">12,4 mil</div><div class="lt">gostos</div></div></div>
+            <div class="take t5"><svg class="graf" viewBox="0 0 200 90" preserveAspectRatio="none"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#ec2a6d"/><stop offset="1" stop-color="#f7a133"/></linearGradient></defs><path d="M0 80 L40 70 L70 74 L100 52 L130 46 L160 24 L200 8" fill="none" stroke="url(#gg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="cap">Mais alcance. Mais clientes.</div></div>
+            <div class="take t6"><img src="img/icone.png" alt=""><div class="fim">LUXS <span class="grad">DIGITAL</span></div><div class="cap2">A sua marca, em movimento.</div></div>
+            <div class="flash"></div>
+            <div class="barras"></div>
+            <span class="rec">REC</span><span class="tc" id="tc">00:00:00</span>
+          </div>
+          <div class="tracks"><span class="head"></span>
+            <div class="trk t"><b style="width:15%"></b><b style="width:14%;margin-left:19%"></b><b style="width:14%;margin-left:18%"></b><b style="width:15%"></b></div>
+            <div class="trk v"><b style="width:16%"></b><b style="width:16%"></b><b style="width:16%"></b><b style="width:16%"></b><b style="width:16%"></b><b style="width:16%"></b></div>
+            <div class="trk a"><b style="width:100%"></b></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="sol wide reveal">
+        <div>
+          <small>DEV · SITES E APPS</small>
+          <h3>Um site que vende<br>enquanto você dorme.</h3>
+          <ul class="subs">
+            <li><b>Site profissional</b><span>Rápido, pronto para telemóvel e pensado para transformar visitas em pedidos de orçamento.</span></li>
+            <li><b>Ferramenta web</b><span>Agendamentos, pedidos, área de cliente, painéis. O seu processo manual a funcionar sozinho, online.</span></li>
+            <li><b>App na App Store e Play Store</b><span>A sua aplicação publicada no iPhone e no Android, com a sua marca no ecrã dos seus clientes.</span></li>
+          </ul>
+          <a href="#contato" class="more">Quero o meu site →</a>
+        </div>
+        <div class="demo"><div class="devices">
+          <div class="laptop"><div class="screen"><div class="mini">
+            <div class="mini-grid"></div>
+            <div class="mini-nav"><span><img src="img/icone.png" alt="">LUXS <em class="grad">DIGITAL</em></span><span class="mini-links"><b></b><b></b><b></b></span><i>Falar com a LUXS</i></div>
+            <div class="mini-hero">
+              <div class="mini-h1">O seu negócio merece<br>mais do que <span class="mini-rot"><span class="grad">sorte.</span><span class="grad">improviso.</span><span class="grad">promessas.</span></span></div>
+              <div class="mini-sub">Criamos o seu site, colocamos o seu negócio no Google e trazemos clientes.</div>
+              <i class="mini-btn">Falar com a nossa equipa →</i>
+            </div>
+            <span class="mini-cursor"></span>
+          </div></div><div class="base"></div></div>
+          <div class="mobile"><div class="mob-scroll">
+            <div class="mob-nav"><img src="img/icone.png" alt=""><span>LUXS</span><i></i></div>
+            <div class="mob-h">O seu negócio merece mais do que <em class="grad">sorte.</em></div>
+            <div class="mob-btn">Falar connosco</div>
+            <div class="mob-card"><b></b><span></span><span></span></div>
+            <div class="mob-card"><b></b><span></span><span></span></div>
+            <div class="mob-card"><b></b><span></span><span></span></div>
+          </div><span class="tap"></span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee"><div class="track" id="mq"></div></div>
+
+<!-- ONDE ATUAMOS -->
+<section id="resultados">
+  <div class="wrap">
+    <div class="title center reveal"><div class="kicker">Onde atuamos</div><h2>Um time. Dois continentes.</h2></div>
+    <div class="nums">
+      <div class="num reveal"><b class="grad" data-count="4">0</b><span>países atendidos: Brasil, Portugal, Espanha e França</span></div>
+      <div class="num reveal"><b class="grad" data-count="4">0</b><span>idiomas: português, espanhol, francês e inglês</span></div>
+      <div class="num reveal"><b class="grad" data-count="24" data-suf="h">0</b><span>para responder ao seu contacto</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section id="metodo">
+  <div class="wrap">
+    <div class="title center reveal"><div class="kicker">Como trabalhamos</div><h2>Quatro passos. Um só parceiro.</h2><p>Do primeiro contacto ao crescimento: sabe sempre em que ponto está o seu projeto.</p></div>
+    <div class="fases">
+      <div class="line"><div class="fill" id="fill"></div></div>
+      <div class="fase"><div class="dot">1</div><div class="card"><h3>Conversa e diagnóstico</h3><ul><li>O seu negócio</li><li>O seu público</li><li>Concorrência</li><li>Objetivos</li></ul><div class="out"><small>RESULTADO</small><b>Um plano claro</b>, por escrito, com o que fazer primeiro, prazos e valores.</div></div></div>
+      <div class="fase"><div class="dot">2</div><div class="card"><h3>Criação</h3><ul><li>Site ou app</li><li>Perfil no Google</li><li>Vídeos</li><li>Anúncios</li></ul><div class="out"><small>RESULTADO</small><b>Tudo pronto</b> com a cara da sua marca, aprovado por si.</div></div></div>
+      <div class="fase"><div class="dot">3</div><div class="card"><h3>Lançamento</h3><ul><li>Site no ar</li><li>Campanhas ativas</li><li>Contactos a chegar</li><li>Medição de tudo</li></ul><div class="out"><small>RESULTADO</small><b>O seu negócio a aparecer</b> no Google e nas redes para quem procura o que vende.</div></div></div>
+      <div class="fase"><div class="dot">4</div><div class="card"><h3>Acompanhamento</h3><ul><li>Manutenção</li><li>Ajustes nos anúncios</li><li>Novos conteúdos</li><li>Relatórios</li></ul><div class="out"><small>RESULTADO</small><b>Crescimento contínuo</b> com base em números, não em achismo.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJEÇÕES -->
+<section id="duvidas">
+  <div class="wrap">
+    <div class="title center reveal"><div class="kicker">Sem rodeios</div><h2>As dúvidas mais comuns, respondidas.</h2></div>
+    <div class="objs">
+      <div class="obj reveal"><div><small>DÚVIDA 1</small><h3>"Já paguei por um site e ninguém o via."</h3></div><p>Um site sozinho é uma loja numa rua sem movimento. Por isso ligamos o site ao Google e aos anúncios: quem procura pelo que vende encontra-o, e quem o encontra consegue falar consigo num clique.</p></div>
+      <div class="obj reveal"><div><small>DÚVIDA 2</small><h3>"Os clientes não me encontram no Google."</h3></div><p>É exatamente para isso que serve o Google Meu Negócio. Configuramos o seu perfil para que, quando alguém pesquisar pelo seu serviço na sua zona, o seu negócio apareça no Google e no Maps, com avaliações, fotos e o botão para ligar.</p></div>
+      <div class="obj reveal"><div><small>DÚVIDA 3</small><h3>"Não tenho tempo para acompanhar."</h3></div><p>Não precisa. Tratamos de tudo e só lhe pedimos aprovação nos momentos importantes. Você acompanha os resultados, não o trabalho.</p></div>
+      <div class="obj reveal"><div><small>DÚVIDA 4</small><h3>"Estou longe. Funciona à distância?"</h3></div><p>Sim. Trabalhamos 100% online no Brasil, em Portugal, Espanha e França. Reuniões por videochamada e conversas pelo WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORQUÊ -->
+<section>
+  <div class="wrap">
+    <div class="title reveal"><div class="kicker">Porquê a LUXS</div><h2>O que muda quando trabalha connosco.</h2></div>
+    <div class="why">
+      <div class="card reveal"><h3><i>01</i>Tudo num só lugar</h3><p>Site, Google, anúncios e vídeos com a mesma equipa, a falar a mesma língua. Sem andar atrás de quatro fornecedores.</p></div>
+      <div class="card reveal"><h3><i>02</i>Proposta clara por escrito</h3><p>Prazos, entregas e valores definidos antes de começar. Sem surpresas.</p></div>
+      <div class="card reveal"><h3><i>03</i>Decisões com números</h3><p>Medimos cada visita, clique e contacto. Investimos mais onde há retorno e cortamos o que não funciona.</p></div>
+      <div class="card reveal"><h3><i>04</i>Entrega rápida</h3><p>Sites e campanhas no ar em dias, não em meses.</p></div>
+      <div class="card reveal"><h3><i>05</i>Atendimento no seu idioma</h3><p>Português, espanhol, francês ou inglês. Do Brasil à Europa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap reveal">
+    <img class="x" src="img/icone.png" alt="">
+    <div class="kicker" style="justify-content:center">Próximo passo</div>
+    <h2>A próxima fase do seu negócio<br>começa com a <span class="grad">LUXS</span>.</h2>
+    <a href="#contato" class="btn btn-main">Falar com a equipa <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano"></span> LUXS Digital · luxs.agencia@gmail.com</span>
+    <nav><a href="#">Política de Privacidade</a><a href="#">Termos de Serviço</a><a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener">Livro de Reclamações</a></nav>
+  </div>
+</footer>
+
+<a class="whats" href="https://wa.me/351932720896" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+</a>
+
+<script>
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('ano').textContent = new Date().getFullYear();
+
+  // topo fica sólido ao descer
+  const topo = document.getElementById('topo');
+  addEventListener('scroll', () => topo.classList.toggle('solid', scrollY > 40), {passive:true});
+
+  // aparecer ao descer
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('on')), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // rolagem suave
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); e.preventDefault();
+    const alvo = id.length > 1 ? document.querySelector(id) : document.body;
+    scrollTo({top: alvo.getBoundingClientRect().top + scrollY - 74, behavior: 'smooth'});
+  }));
+
+  // palavra que se escreve sozinha
+  (function(){
+    const el = document.querySelector('.rot'), palavras = ['sorte.', 'improviso.', 'um site que ninguém vê.', 'promessas.'];
+    if (reduz) { el.textContent = palavras[0]; return; }
+    let i = 0, n = 0, apagando = false;
+    (function tick(){
+      const w = palavras[i]; n += apagando ? -1 : 1; el.textContent = w.slice(0, n);
+      let t = apagando ? 40 : 90;
+      if (!apagando && n === w.length) { apagando = true; t = 1900; }
+      else if (apagando && n === 0) { apagando = false; i = (i+1) % palavras.length; t = 300; }
+      setTimeout(tick, t);
+    })();
+  })();
+
+  // rede de pontos que se liga ao mouse
+  (function(){
+    const cv = document.getElementById('rede'), hero = document.querySelector('.hero'), ctx = cv.getContext('2d');
+    let W, H, pts = [], mouse = {x:-999, y:-999};
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    function medir(){
+      W = hero.offsetWidth; H = hero.offsetHeight;
+      cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+      pts = Array.from({length: Math.round(W*H/15000)}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3}));
+    }
+    medir(); addEventListener('resize', medir);
+    hero.addEventListener('mousemove', e => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX-r.left; mouse.y = e.clientY-r.top; });
+    hero.addEventListener('mouseleave', () => { mouse.x = mouse.y = -999; });
+    (function desenhar(){
+      ctx.clearRect(0,0,W,H);
+      for (const p of pts) {
+        if (!reduz) { p.x += p.vx; p.y += p.vy; }
+        if (p.x<0||p.x>W) p.vx*=-1; if (p.y<0||p.y>H) p.vy*=-1;
+        const dx = mouse.x-p.x, dy = mouse.y-p.y, d = Math.hypot(dx,dy);
+        if (d < 180) {
+          p.x -= dx/d*.6; p.y -= dy/d*.6;
+          const g = ctx.createLinearGradient(p.x,p.y,mouse.x,mouse.y), a = (1-d/180)*.6;
+          g.addColorStop(0,'rgba(236,42,109,'+a+')'); g.addColorStop(1,'rgba(247,161,51,'+a+')');
+          ctx.strokeStyle = g; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke();
+        }
+        ctx.fillStyle = d < 180 ? '#f7a133' : 'rgba(255,255,255,.35)';
+        ctx.beginPath(); ctx.arc(p.x,p.y,d<180?2:1.4,0,7); ctx.fill();
+      }
+      for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++) {
+        const a=pts[i], b=pts[j], d=Math.hypot(a.x-b.x,a.y-b.y);
+        if (d<110) { ctx.strokeStyle='rgba(255,255,255,'+(1-d/110)*.08+')'; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      }
+      requestAnimationFrame(desenhar);
+    })();
+  })();
+
+  // demo do Google: escreve a pesquisa, mostra o resultado, recomeça
+  (function(){
+    const box = document.getElementById('gdemo'), el = document.getElementById('gtyped');
+    const buscas = ['dentista perto de mim', 'restaurante em Lisboa', 'eletricista urgente'];
+    let i = 0;
+    function ciclo(){
+      const q = buscas[i++ % buscas.length]; let n = 0;
+      box.classList.remove('show'); el.textContent = '';
+      (function escrever(){
+        el.textContent = q.slice(0, ++n);
+        if (n < q.length) setTimeout(escrever, 70);
+        else setTimeout(() => { box.classList.add('show'); setTimeout(ciclo, 3800); }, 450);
+      })();
+    }
+    if (reduz) { el.textContent = buscas[0]; box.classList.add('show'); } else ciclo();
+  })();
+
+  // contador de tempo do vídeo, sincronizado com o cursor (loop de 12s)
+  (function(){ const tc = document.getElementById('tc'), t0 = performance.now();
+    setInterval(() => { const t = ((performance.now()-t0)/1000) % 12, f = Math.floor((t%1)*25);
+      tc.textContent = `00:00:${String(Math.floor(t)).padStart(2,'0')}:${String(f).padStart(2,'0')}`; }, 40); })();
+
+  // contorno que acende onde o mouse passa nos cartões
+  document.querySelectorAll('.sol').forEach(el => el.addEventListener('mousemove', e => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--x', e.clientX-r.left+'px'); el.style.setProperty('--y', e.clientY-r.top+'px');
+  }));
+
+  // faixa que corre
+  const itens = [['Sites','rápidos e feitos para vender'],['Ferramentas web','o seu negócio automatizado'],['Apps','na App Store e Play Store'],['Tráfego pago','Meta e Google'],['Google Meu Negócio','apareça no Google e no Maps'],['Vídeos','produção e edição']]
+    .map(([a,b]) => `<span><b class="grad">${a}</b><em>${b}</em></span>`).join('');
+  document.getElementById('mq').innerHTML = itens + itens;
+
+  // números que contam
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, fim = +el.dataset.count, suf = el.dataset.suf || '', t0 = performance.now();
+    (function passo(t){ const k = Math.min((t-t0)/1400, 1); el.textContent = Math.round(fim*(1-Math.pow(1-k,3))) + suf; if (k<1) requestAnimationFrame(passo); })(t0);
+  }), {threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  // linha das fases enche ao descer
+  const fases = document.querySelector('.fases'), fill = document.getElementById('fill'), passos = document.querySelectorAll('.fase');
+  addEventListener('scroll', () => {
+    const r = fases.getBoundingClientRect(), meio = innerHeight*.6;
+    fill.style.height = Math.max(0, Math.min(1, (meio - r.top) / r.height)) * 100 + '%';
+    passos.forEach(f => f.classList.toggle('on', f.querySelector('.dot').getBoundingClientRect().top < meio));
+  }, {passive:true});
+
+  // formulário: junta as escolhas e abre o WhatsApp com a mensagem organizada
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault(); const f = e.target;
+    const pais = f.pais.value, num = pais === 'Brasil' ? '5584996672984' : '351932720896';
+    const serv = [...f.querySelectorAll('.chips input[type=checkbox]:checked')].map(i => i.value);
+    const linhas = [
+      'Olá, LUXS! 👋\n',
+      `👤 *Nome:* ${f.nome.value}`,
+      f.empresa.value && `🏢 *Empresa:* ${f.empresa.value}`,
+      `🌍 *País:* ${pais}`,
+      `🎯 *Procuro:* ${serv.length ? serv.join(', ') : 'Ainda não sei, quero conversar'}`,
+      f.msg.value && `\n💬 ${f.msg.value}`
+    ].filter(Boolean).join('\n');
+    open(`https://wa.me/${num}?text=${encodeURIComponent(linhas)}`, '_blank');
+  });
+</script>
+</body>
+</html>
